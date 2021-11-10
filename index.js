@@ -16,26 +16,67 @@ function appCreate() {
         inquirer.prompt([
             {
                 type:'input',
-                name:'mgrName',
+                name:'managerName',
                 message: "What is the team manager's name?"
             },
             {
                 type: 'input',
-                name: 'mgrId',
+                name: 'managerId',
                 message: "What is the team manager's employee ID?"
             },
             {
                 type: 'input',
-                name: 'mgrEmail',
+                name: 'managerEmail',
                 message: "What is the team manager's Email address?"
             },
             {
                 type: 'input',
-                name: 'mgrOffice',
+                name: 'managerOffice',
                 message: "What is the team manager's office number?"
             }
-        ]).then(response =>{
-            const manager = new Manager(response.mgrName, response.mgrId, response.mgrEmail,)
+        ]).then(response => {
+            const manager = new Manager(response.managerName, response.managerId, response.managerEmail, response.managerOffice)
+            teamMembersArr.push(manager);
+            idArr.push(response.managerId)
+
+            createTeam() 
         })
     }
+
+    function createTeam() {
+        inquirer.prompt([
+        { 
+            type: 'list',
+            name: 'teamList',
+            message: 'Are they any other team members?',
+            choices: ['Engineer', 'Intern', 'No other team members?']
+        }
+    ]).then(userChoice =>{
+        switch (userChoice.teamList) {
+            case 'Enginner':
+                addEngineer()
+                break;
+            case 'Intern':
+                addIntern()
+                break;
+            default:
+                buildTeam();        
+        }
+    })
+        
+    }
+}   function addEngineer(){
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'engName',
+            message: "What is the Engineers's name?"
+        },
+        {
+            type: 'input',
+            name: 'engId',
+            message: "What is the engineer's emplyee ID?"
+        }
+
+    ])
 }
