@@ -34,6 +34,8 @@ function appCreate() {
                 name: 'mgrOffice',
                 message: "What is the team manager's office number?"
             }
-        ])
+        ]).then(response =>{
+            const manager = new Manager(response.mgrName, response.mgrId, response.mgrEmail,)
+        })
     }
 }
