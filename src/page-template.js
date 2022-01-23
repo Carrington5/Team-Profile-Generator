@@ -1,7 +1,7 @@
-function render(teamMembersArr) { 
+function render(teamMembersArr) {
     let team = ''
 
-    for (i = 0; i < teamMembersArr.length; i++) {        
+    for (i = 0; i < teamMembersArr.length; i++) {
         let role = teamMembersArr[i].getRole()
         let info
         if (role === 'Manager') {
